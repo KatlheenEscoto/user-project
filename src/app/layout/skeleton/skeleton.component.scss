@@ -1,3 +1,4 @@
 .dsc-skeleton-content {
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 80px - 60px); // Le quitamos el espacio del navbar y el footer.
+    background: rgba(192, 229, 241, 0.2);
 }
