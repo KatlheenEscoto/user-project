@@ -1,0 +1,11 @@
+<div class="dsc-card" *ngIf="data">
+    <div class="dsc-card__img">
+        <img src="{{data.avatar}}" alt="" srcset="">
+    </div>
+    <div class="dsc-card__info">
+        <h2>{{data.name}}</h2>
+        <h4>Edad: {{data.age}}</h4>
+        <p>{{data.description}}</p>
+        <p>{{data.work ? data.work : 'Sin trabajo'}}</p>
+    </div>
+</div>

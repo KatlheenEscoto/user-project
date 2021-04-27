@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ITitleH1 } from './title-h1.metadata';
+import { ITitleH1 } from './ititle-h1.metadata';
 
 @Component({
   selector: 'app-title-h1',
