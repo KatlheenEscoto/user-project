@@ -6,13 +6,28 @@ import { SkeletonComponent } from './layout/skeleton/skeleton.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/panel/user', /* Redirigiendo cuando este vacia */
+    pathMatch: 'full'
+  },
+  {
+    path: 'panel',
     component: SkeletonComponent,
     children: [
       {
-        path: '',
+        path: 'user',
         loadChildren: () => import('@modules/user/user.module').then( (m) => m.UserModule )
+      },
+      {
+        path: '**',
+        redirectTo: '/panel/user', /* Si no la encuentra en las rutas hijas */
+        pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: '**',
+    redirectTo: '/panel/user', /* Si no la encuentra */
+    pathMatch: 'full'
   }
 ];
 
