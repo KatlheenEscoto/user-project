@@ -2,13 +2,23 @@
     <div class="col-12">
         <h1 class="text-success my-5">Detalle de Usuarios</h1>
     </div>
-    <div class="col-12 col-md-6 col-xl-3 mb-4 text-center">
-        <img src="{{currentUser.avatar}}" alt="Imagen Usuario {{currentUser.name}}" class="dsc-user__img">
+    <div class="col-12" *ngIf="currentUser; else loaderComponent">
+        <div class="row">
+            <div class="col-12 col-md-6 col-xl-3 mb-4 text-center">
+                <img src="{{currentUser.avatar}}" alt="Imagen Usuario {{currentUser.name}}" class="dsc-user__img">
+            </div>
+            <div class="col-12 col-md-6 col-xl-9 pl-4">
+                <h2 class="text-secondary border-bottom pb-3">Detalle de {{currentUser.name}}</h2>
+                <h3>Edad: {{currentUser.age}}</h3>
+                <p>Descripción: {{currentUser.description}}</p>
+                <p>Puesto: {{currentUser.work ? currentUser.work : 'Sin trabajo'}}</p>
+            </div>
+        </div>
     </div>
-    <div class="col-12 col-md-6 col-xl-9 pl-4">
-        <h2 class="text-secondary border-bottom pb-3">Detalle de {{currentUser.name}}</h2>
-        <h3>Edad: {{currentUser.age}}</h3>
-        <p>Descripción: {{currentUser.description}}</p>
-        <p>Puesto: {{currentUser.work ? currentUser.work : 'Sin trabajo'}}</p>
-    </div>
+    <ng-template #loaderComponent>
+        <div class="col-12 text-center">
+            <h5 class="my-5">Cargando...</h5>
+        </div>
+    </ng-template>
+    
 </div>

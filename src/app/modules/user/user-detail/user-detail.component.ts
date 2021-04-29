@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICardUser } from '../../../shared/components/card/card-user/icard-user.metadata';
 import { USERS_DATA } from '../../../data/constants/user.const';
+import { UsersService } from '../../../data/services/api/users.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -15,14 +16,27 @@ export class UserDetailComponent implements OnInit {
   public currentUser: ICardUser;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UsersService
   ) { 
     this.id = +this.route.snapshot.params.id;
-    this.currentUser = this.users.find( user => user.id === this.id );
-    console.log(this.currentUser);
+
   }
 
   ngOnInit(): void {
+    this.getUserById();
+  }
+
+  getUserById() {
+    this.userService.getUserById(this.id).subscribe(
+      response => {
+        if ( !response.error ) {
+          this.currentUser = response.data;
+        } else {
+          console.log(response.msg);
+        }
+      }
+    );
   }
 
 }
