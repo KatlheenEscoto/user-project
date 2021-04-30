@@ -13,9 +13,9 @@ export class CardLoaderComponent implements OnInit {
   @Input() bars = 1;
 
   // Final properties. 
-  public totalBars = [];
+  public totalBars: { width: string }[] = [];
   public finalStyleImage = {};
-  public finalStyleBar = {};
+  public finalHeightBar = '0';
 
   constructor() { }
 
@@ -23,7 +23,9 @@ export class CardLoaderComponent implements OnInit {
 
     // Calculate total bars.
     for (let i = 0; i <= this.bars; i++) {
-      this.totalBars.push(i);
+      // Anchura dinamica.
+      const width = Math.floor(Math.random() * (100 - 60)) + 60;
+      this.totalBars.push( { width: `${width}%` } );
     }
 
     // Img style.
@@ -33,9 +35,7 @@ export class CardLoaderComponent implements OnInit {
     };
 
     // Bar style.
-    this.finalStyleBar = {
-      height: `${this.barHeight}px`
-    };
+    this.finalHeightBar = `${this.barHeight}px`;
 
   }
 
