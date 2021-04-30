@@ -1,14 +1,28 @@
-<!--<div class="row">
-    <div class="col-12">
-        <app-title-h1 [data]="title"></app-title-h1>
-    </div>
-    <app-card-user [data]="user" *ngFor="let user of users" class="col-12 col-md-6 col-xl-4"></app-card-user>
-</div>-->
-
 <div class="container-fluid px-0">
     <div class="row bg-dark h-100">
         <div class="col-12 px-0">
             <app-carousel [items]="carouselData" ></app-carousel>
+        </div>
+    </div>
+    <div class="col-12 mt-3">
+        <div class="row">
+            <div class="col-12">
+                <app-title-h1 [data]="title"></app-title-h1>
+            </div>
+            <ng-container *ngIf="users; else elseUsersLoader">
+                <app-card-user [data]="user" *ngFor="let user of users" class="col-12 col-md-6 col-xl-4"></app-card-user>
+            </ng-container>
+
+            <!-------------- Init loader card user ---------------->
+            <ng-template #elseUsersLoader>
+                <app-card-loader 
+                    [bars]="4"
+                    class="col-12 col-md-6 col-xl-4"
+                    *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                ></app-card-loader>
+            </ng-template>
+            <!-------------- End loader card user ----------------->
+
         </div>
     </div>
 </div>
