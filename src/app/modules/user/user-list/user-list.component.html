@@ -9,9 +9,32 @@
             <div class="col-12">
                 <app-title-h1 [data]="title"></app-title-h1>
             </div>
+            
             <ng-container *ngIf="users; else elseUsersLoader">
-                <app-card-user [data]="user" *ngFor="let user of users" class="col-12 col-md-6 col-xl-4"></app-card-user>
+                <app-card-user [data]="user" *ngFor="let user of users; trackBy: trackByUserId" class="col-12 col-md-6 col-xl-4"></app-card-user>
             </ng-container>
+
+            <div class="col-12">
+                <button class="btn btn-primary my-3 ml-5" (click)="addUser()">
+                    Agregar usuario
+                </button>
+            </div>
+
+            <!--<div class="row">
+                <div class="col-12">
+                    <h1>Lista de tareas</h1>
+                </div>
+                <div class="col-12" *ngFor="let task of tasks; index as i;">
+                    <h3>#{{i + 1}} {{task.title}}</h3>
+                </div>
+            </div>
+
+            <div class="col-12" *ngFor="let option of options; first as isFirst; last as isLast;">
+                <div class="row">
+                    {{option}} {{ isFirst || isLast ? 'día' : 'días'}}
+                </div>
+            </div>
+        -->
 
             <!-------------- Init loader card user ---------------->
             <ng-template #elseUsersLoader>

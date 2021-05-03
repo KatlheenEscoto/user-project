@@ -25,6 +25,27 @@ export class UserListComponent implements OnInit {
 
   public carouselData: ICarouselItem[] = CAROUSEL_DATA_ITEMS;
 
+  public tasks:{ title: string }[] = [
+    {
+      title: 'Primer tarea'
+    },
+    {
+      title: 'Segunda tarea'
+    },
+    {
+      title: 'Tercer tarea'
+    }
+  ];
+
+  public options: string[] = [
+    'un',
+    'dos',
+    'tres',
+    'cuatro', 
+    'cinco',
+    'ningún'
+  ]
+
   constructor(
     private usersService: UsersService
   ) { 
@@ -49,6 +70,24 @@ export class UserListComponent implements OnInit {
         }
       }
     )
+  }
+
+
+  trackByUserId(index, item) {
+    return item.id;
+  }
+
+  addUser() {
+    this.users.push(
+      {
+        id: 100,
+        name: 'RosaElena Montano',
+        age: 45,
+        description: 'Madre',
+        work: 'Directora Ejecutiva',
+        avatar: 'https://www.edarabia.com/wp-content/uploads/2015/11/7-ways-to-become-the-person-everyone-respects.jpg'
+      }
+    );
   }
 
 }
